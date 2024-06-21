@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for ZC_GSN_RAP_TRAVEL'
+define service ZUI_GSN_RAP_TRAVEL_O4 {
+  expose ZC_GSN_RAP_TRAVEL as Travel;
+}

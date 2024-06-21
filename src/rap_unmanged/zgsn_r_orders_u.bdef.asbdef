@@ -1,0 +1,17 @@
+unmanaged implementation in class ZCLBP_GSN_ORDERS unique;
+strict ( 2 );
+
+define behavior for ZGSN_R_ORDERS_U alias order
+//implementation in class zclbp_gsn_orders unique
+//persistent table zgsn_header
+lock master
+authorization master ( instance )
+etag master ChangeDate
+{
+  field ( readonly ) WorkOrder;
+  create;
+  update;
+  delete;
+  action ( features : global ) SetApprove result [1] $self;
+  action ( features : global ) SetCancel result [1] $self;
+}

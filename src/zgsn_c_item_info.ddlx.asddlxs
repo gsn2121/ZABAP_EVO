@@ -1,0 +1,47 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+    typeName: 'Invoice Item',
+    typeNamePlural: 'Invoice Items',
+    typeImageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fbill_2584894&psig=AOvVaw0rioxpBpNYnSbrzzgxWf77&ust=1718036007558000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOD2z__0zoYDFQAAAAAdAAAAABAE'
+}
+annotate entity zgsn_c_item_info with
+{
+  @UI.facet: [ { id:              'Invreno',
+                    purpose:         #STANDARD,
+                    type:            #IDENTIFICATION_REFERENCE,
+                    label:           'Item',
+                    position:        10 }
+
+
+             ]
+
+  @UI: {
+    lineItem:       [ { position: 10, importance: #HIGH } ],
+    identification: [ { position: 10, label: 'ITem No' } ] }
+
+
+  ItemNo;
+  @UI: {
+     lineItem:       [ { position: 30, importance: #HIGH } ],
+     identification: [ { position: 30, label: 'Status' } ] }
+  ItmStatus;
+  @UI: {
+     lineItem:       [ { position: 40, importance: #HIGH } ],
+     identification: [ { position: 40, label: 'Salesoffice' } ] }
+  SalesOffice;
+  @UI: {
+     lineItem:       [ { position: 50, importance: #HIGH } ],
+     identification: [ { position: 50, label: 'Uom' } ] }
+  Uom;
+  @UI: {
+     lineItem:       [ { position: 60, importance: #HIGH } ],
+     identification: [ { position: 60, label: 'Deliver Quantity' } ] }
+
+  DelvQty;
+  @UI: {
+     lineItem:       [ { position: 70, importance: #HIGH } ],
+     identification: [ { position: 70, label: 'Approved Quantity' } ] }
+
+  AprQty;
+
+}
