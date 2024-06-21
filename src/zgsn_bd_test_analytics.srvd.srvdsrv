@@ -1,0 +1,4 @@
+@EndUserText.label: 'Testing Service Definatiion'
+define service ZGSN_BD_TEST_ANALYTICS {
+  expose ZCDSV_I_TEST_ANALYTICS as Test;
+}

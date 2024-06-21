@@ -1,0 +1,4 @@
+@EndUserText.label: 'ZGSN_C_ORDER_U Behavior Definition'
+define service ZGSN_C_ORDER_U {
+  expose ZGSN_C_ORDERS_U as Orders;
+}

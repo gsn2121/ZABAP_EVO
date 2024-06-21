@@ -1,0 +1,102 @@
+managed;// implementation in class zgsncl_bp_i_header_info unique;
+strict ( 2 );
+//with draft;
+
+define behavior for zgsn_i_header_info alias Invoice
+implementation in class zgsncl_bp_i_header_info unique
+persistent table zgsn_header
+//draft table zgsn_dt_header
+lock master //total etag UpdAt
+//authorization master ( instance )
+authorization master ( global )
+etag master Locallastchangedat
+
+{
+  //  field ( readonly : update ) Hdrkey;
+  field ( numbering : managed, readonly ) Hdrkey;
+  //  field ( readonly ) InvReNo;
+  //  field ( readonly ) Hdrkey;
+  field ( readonly ) InvReNo;
+
+  create;
+  update;
+  delete;
+  association _Billing { create; }
+  association _Item { create; }
+  //  draft determine action Prepare { validation validateHdrKey; }
+  //  validation validateHdrKey on save { create; field Hdrkey; }
+  //  draft action resume;
+  //  draft action Edit;
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  mapping for zgsn_header
+    {
+      hdrkey             = hdrkey;
+      InvReNo            = inv_re_no;
+      ShipLoc            = ship_loc;
+      SalesArea          = sales_area;
+      PartNo             = part_no;
+      ShipStatus         = ship_status;
+      Uom                = uom;
+      ShipQuan           = ship_quan;
+      RecievQuan         = reciev_quan;
+      UpdBy              = upd_by;
+      UpdAt              = upd_at;
+      Locallastchangedat = locallastchangedat;
+    }
+
+}
+
+define behavior for zgsn_i_billing_info alias Billing
+implementation in class zgsncl_bp_i_billing_info unique
+persistent table zgsn_billing
+//draft table zgsn_dt_billing
+lock dependent by _Hdr
+authorization dependent by _Hdr
+//etag master <field_name>
+early numbering
+
+{
+  field ( readonly ) Itmkey;
+  //  field ( numbering : managed, readonly : update ) Itmkey;
+  update;
+  delete;
+  field ( readonly ) Hdrkey;
+  association _Hdr;
+  mapping for zgsn_billing
+    {
+      Hdrkey   = hdrkey;
+      Itmkey   = itmkey;
+      InvReNo  = inv_re_no;
+      ItemNo   = item_no;
+      Discount = discount;
+    }
+}
+
+define behavior for zgsn_i_item_info alias InvoiceItem
+persistent table zgsn_item
+//draft table zgsn_dt_item
+lock dependent by _Hdr
+authorization dependent by _Hdr
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Hdrkey;
+  //  field ( ) InvReNo;
+  field ( numbering : managed, readonly : update ) Itmkey;
+  association _Hdr;
+
+  mapping for zgsn_item corresponding
+    {
+      Hdrkey      = hdrkey;
+      Itmkey      = itmkey;
+      InvReNo     = inv_re_no;
+      ItemNo      = item_no;
+      ItmStatus   = itm_status;
+      SalesOffice = sales_office;
+      Uom         = uom;
+      DelvQty     = delv_qty;
+      AprQty      = apr_qty;
+    }
+}

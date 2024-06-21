@@ -1,0 +1,11 @@
+@EndUserText.label: 'ZR_GSN_RAP_TRAVEL'
+@MappingRole: true
+define role ZR_GSN_RAP_TRAVEL {
+    grant
+        select
+            on
+                ZR_GSN_RAP_TRAVEL
+                    where
+                        false;
+                        
+}

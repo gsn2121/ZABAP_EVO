@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definatiion ZGSN_C_HEADER_INFO'
+define service ZGSN_C_HEADER_INFO {
+  expose zgsn_c_header_info  as HeaderEntity;
+  expose zgsn_c_item_info    as ItemEntity;
+  expose zgsn_c_billing_info as BillingEntity;
+}

@@ -1,0 +1,73 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Invoice',
+    typeNamePlural: 'Invoices',
+    typeImageUrl: 'https://img.icons8.com/?size=100&id=23729&format=png&color=000000'
+}
+@Search.searchable: true
+annotate entity zgsn_c_header_info with
+{
+
+  @UI.facet: [
+    {  id:              'InvoiceStatus',
+                       purpose:      #HEADER  ,
+                       type:            #DATAPOINT_REFERENCE,
+                       label:           'Status',
+                       position:        9,
+                       targetQualifier: 'ShipStatus'
+                       },
+
+   { id:              'Invoice',
+                   purpose:         #STANDARD,
+                   type:            #IDENTIFICATION_REFERENCE,
+                   label:           'Invoice Info',
+                   position:        10
+                   }  ,
+
+            {
+            type: #LINEITEM_REFERENCE,
+            position: 20,
+            label: 'Items',
+            targetElement: '_Item'
+            },
+                          {
+            type: #LINEITEM_REFERENCE,
+            position: 30,
+            label: 'Billing',
+            targetElement: '_Billing'
+            }
+
+            ]
+  Hdrkey;
+
+  @UI: {
+        lineItem:       [ { position: 10, importance: #HIGH } ],
+        identification: [ { position: 10, label: 'Inv. Receipt No' } ] }
+  @Search.defaultSearchElement: true
+
+
+  InvReNo;
+
+  @UI: {
+        lineItem:       [ { position: 20, importance: #HIGH } ],
+        identification: [ { position: 20, label: 'Ship Loc' } ],
+        selectionField: [{ position: 10 }] }
+  @Search.defaultSearchElement: true
+  ShipLoc;
+
+  @UI: {
+    lineItem:       [ { position: 30, importance: #HIGH } ],
+    identification: [ { position: 30, label: ' Sales Area' } ] }
+  @Search.defaultSearchElement: true
+  SalesArea;
+
+  @UI: {
+    lineItem:       [ { position: 40, importance: #HIGH } ],
+    identification: [ { position: 40, label: 'Ship Status' } ] }
+  @Search.defaultSearchElement: true
+  @UI.dataPoint : { qualifier: 'ShipStatus' , title: 'Status' }
+  ShipStatus;
+
+
+
+}

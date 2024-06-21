@@ -1,0 +1,33 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+    typeName: 'Billing',
+    typeNamePlural: 'Billings',
+    typeImageUrl: 'https://img.icons8.com/?size=100&id=23729&format=png&color=000000'
+}
+annotate entity zgsn_c_billing_info with
+{
+
+
+  @UI.facet: [ { id:              'Billing',
+                   purpose:         #STANDARD,
+                   type:            #IDENTIFICATION_REFERENCE,
+                   label:           'Billing Info',
+                   position:        20 }
+
+
+            ]
+
+  @UI: {
+        lineItem:       [ { position: 10, importance: #HIGH } ],
+        identification: [ { position: 10, label: 'InvReNo' } ] }
+  InvReNo;
+  @UI: {
+    lineItem:       [ { position: 20, importance: #HIGH } ],
+    identification: [ { position: 20, label: 'ItemNo' } ] }
+  ItemNo;
+  @UI: {
+       lineItem:       [ { position: 30, importance: #HIGH } ],
+       identification: [ { position: 30, label: 'Discount' } ] }
+  Discount;
+
+}
